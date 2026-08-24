@@ -1,5 +1,5 @@
 # CONFIGURAÇÃO PARA O PYTHONANYWHERE
-# Usuário: taissapieri
+# Para lembrar
 
 import sys
 
