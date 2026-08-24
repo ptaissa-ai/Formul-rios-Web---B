@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>Flasky</title>
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap -->
+    <link
+      href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"
+      rel="stylesheet">
+
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+      type="image/x-icon">
+
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+      type="image/x-icon">
+
+  </head>
+
+  <body>
+
+    <div
+      class="navbar navbar-inverse"
+      role="navigation">
+
+      <div class="container">
+
+        <div class="navbar-header">
+
+          <button
+            type="button"
+            class="navbar-toggle"
+            data-toggle="collapse"
+            data-target=".navbar-collapse">
+
+            <span class="sr-only">
+              Toggle navigation
+            </span>
+
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+
+          </button>
+
+          <a
+            class="navbar-brand"
+            href="/">
+
+            Avaliação contínua:
+            <b>Aula 050.B</b>
+
+          </a>
+
+        </div>
+
+
+        <div class="navbar-collapse collapse">
+
+          <ul class="nav navbar-nav">
+
+            <li>
+              <a href="{{ url_for('index') }}">
+                Home
+              </a>
+            </li>
+
+            <li>
+              <a href="{{ url_for('login') }}">
+                Login
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="container">
+
+      {% block page_content %}
+      {% endblock %}
+
+    </div>
+
+
+    <script
+      src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+    </script>
+
+    <script
+      src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js">
+    </script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js"
+      crossorigin="anonymous">
+    </script>
+
+    {% block scripts %}
+    {% endblock %}
+
+  </body>
+
+</html>

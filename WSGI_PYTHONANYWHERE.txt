@@ -1,0 +1,11 @@
+# CONFIGURAÇÃO PARA O PYTHONANYWHERE
+# Usuário: taissapieri
+
+import sys
+
+path = '/home/taissapieri/flask_semana06_taissa'
+
+if path not in sys.path:
+    sys.path.append(path)
+
+from app import app as application

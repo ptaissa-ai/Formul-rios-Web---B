@@ -1,0 +1,268 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<div class="page-header">
+
+    <h1>
+        Olá, {{ name }} {{ surname }}!
+    </h1>
+
+    <h3>
+        A sua Insituição de ensino é {{ institution }}
+    </h3>
+
+    <h3>
+        Está cursando a disciplina de {{ discipline }}
+    </h3>
+
+    <br>
+
+    <h4>
+        O IP do computador remoto é: {{ ip }}
+    </h4>
+
+    <h4>
+        O host da aplicação é: {{ host }}
+    </h4>
+
+</div>
+
+
+<form
+    action=""
+    method="post"
+    class="form"
+    role="form">
+
+
+    <div class="form-group required">
+
+        <label
+            class="control-label"
+            for="name">
+
+            Informe o seu nome
+
+        </label>
+
+        <input
+            class="form-control"
+            id="name"
+            name="name"
+            required
+            type="text"
+            value="">
+
+    </div>
+
+
+    <div class="form-group required">
+
+        <label
+            class="control-label"
+            for="surname">
+
+            Informe o seu sobrenome:
+
+        </label>
+
+        <input
+            class="form-control"
+            id="surname"
+            name="surname"
+            required
+            type="text"
+            value="">
+
+    </div>
+
+
+    <div class="form-group required">
+
+        <label
+            class="control-label"
+            for="institution">
+
+            Informe a sua Insituição de ensino:
+
+        </label>
+
+        <input
+            class="form-control"
+            id="institution"
+            name="institution"
+            required
+            type="text"
+            value="">
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label
+            class="control-label"
+            for="discipline">
+
+            Informe a sua disciplina:
+
+        </label>
+
+        <select
+            class="form-control"
+            id="discipline"
+            name="discipline">
+
+            <option value="dswa5">
+                DSWA5
+            </option>
+
+            <option value="dwba4">
+                DWBA4
+            </option>
+
+            <option value="GPSA5">
+                Gestão de projetos
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <input
+        class="btn btn-default"
+        id="submit"
+        name="submit"
+        type="submit"
+        value="Submit">
+
+</form>
+
+
+<br>
+
+
+<p>
+    The local date and time is
+
+    <span
+        class="flask-moment"
+        data-timestamp="{{ timestamp }}"
+        data-function="format"
+        data-format="LLL"
+        data-refresh="0"
+        style="display: none">
+
+        {{ timestamp }}
+
+    </span>.
+
+</p>
+
+
+<p>
+    That was
+
+    <span
+        class="flask-moment"
+        data-timestamp="{{ timestamp }}"
+        data-function="fromNow"
+        data-refresh="60000"
+        style="display: none">
+
+        {{ timestamp }}
+
+    </span>.
+
+</p>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script>
+
+moment.locale("en");
+
+function flask_moment_render(elem) {
+
+    const timestamp = moment(
+        elem.dataset.timestamp
+    );
+
+    const func = elem.dataset.function;
+
+    const format = elem.dataset.format;
+
+    let args = [];
+
+    if (format)
+        args.push(format);
+
+    elem.textContent =
+        timestamp[func].apply(
+            timestamp,
+            args
+        );
+
+    elem.classList.remove(
+        'flask-moment'
+    );
+
+    elem.style.display = "";
+
+}
+
+
+function flask_moment_render_all() {
+
+    const moments =
+        document.querySelectorAll(
+            '.flask-moment'
+        );
+
+    moments.forEach(
+        function(elem) {
+
+            flask_moment_render(
+                elem
+            );
+
+            const refresh =
+                elem.dataset.refresh;
+
+            if (
+                refresh &&
+                refresh > 0
+            ) {
+
+                setInterval(
+                    function() {
+
+                        flask_moment_render(
+                            elem
+                        );
+
+                    },
+                    refresh
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    flask_moment_render_all
+);
+
+</script>
+
+{% endblock %}
