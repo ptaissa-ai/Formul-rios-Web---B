@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<div class="page-header">
+    <h3>Dados do acesso</h3>
+</div>
+
+<h2>
+    Você está acessando o sistema por meio do usuário {{ usuario }}
+</h2>
+
+<br>
+
+<p>
+    The local date and time is
+
+    <span
+        class="flask-moment"
+        data-timestamp="{{ timestamp }}"
+        data-function="format"
+        data-format="LLL"
+        data-refresh="0"
+        style="display: none">
+
+        {{ timestamp }}
+
+    </span>.
+</p>
+
+<p>
+    That was
+
+    <span
+        class="flask-moment"
+        data-timestamp="{{ timestamp }}"
+        data-function="fromNow"
+        data-refresh="60000"
+        style="display: none">
+
+        {{ timestamp }}
+
+    </span>.
+</p>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script>
+
+moment.locale("en");
+
+function flask_moment_render(elem) {
+
+    const timestamp = moment(elem.dataset.timestamp);
+    const func = elem.dataset.function;
+    const format = elem.dataset.format;
+
+    let args = [];
+
+    if (format)
+        args.push(format);
+
+    elem.textContent = timestamp[func].apply(timestamp, args);
+    elem.classList.remove("flask-moment");
+    elem.style.display = "";
+}
+
+
+function flask_moment_render_all() {
+
+    const moments = document.querySelectorAll(".flask-moment");
+
+    moments.forEach(function(elem) {
+
+        flask_moment_render(elem);
+
+        const refresh = elem.dataset.refresh;
+
+        if (refresh && refresh > 0) {
+
+            setInterval(function() {
+                flask_moment_render(elem);
+            }, refresh);
+
+        }
+
+    });
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    flask_moment_render_all
+);
+
+</script>
+
+{% endblock %}
