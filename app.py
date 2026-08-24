@@ -66,19 +66,33 @@ def index():
 @app.route("/login", methods=["GET", "POST"])
 def login():
 
-    mensagem = None
+    timestamp = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
     if request.method == "POST":
-        email = request.form.get("email", "").strip()
-        password = request.form.get("password", "")
-        remember_me = request.form.get("remember_me")
+        usuario = request.form.get("usuario", "").strip()
+        senha = request.form.get("senha", "")
 
-        if email and password:
-            mensagem = "Login enviado com sucesso."
+        session["usuario_login"] = usuario
+
+        return redirect(url_for("login_response"))
 
     return render_template(
         "login.html",
-        mensagem=mensagem
+        timestamp=timestamp
+    )
+
+
+@app.route("/loginResponse")
+def login_response():
+
+    usuario = session.get("usuario_login", "")
+
+    timestamp = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
+    return render_template(
+        "login_response.html",
+        usuario=usuario,
+        timestamp=timestamp
     )
 
 
