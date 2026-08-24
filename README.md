@@ -1,82 +1,35 @@
 # Semana 06 - Formulários Web
 
-Projeto Flask personalizado para:
+Atividade da disciplina de Desenvolvimento Web.
 
-- Nome: Taissa
-- Instituição: IFSP
-- Disciplina inicial: DSWA5
-- Usuário PythonAnywhere: taissapieri
+O objetivo foi criar uma aplicação utilizando Flask e publicar no PythonAnywhere.
 
-## URL esperada
+A aplicação possui dois formulários:
 
-Depois de publicar:
+- Formulário na página Home
+- Formulário de Login
 
-https://taissapieri.pythonanywhere.com
+Na página inicial são exibidas algumas informações como nome, instituição, disciplina, IP e host da aplicação.
 
-## Estrutura
+## Tecnologias utilizadas
 
-```text
-flask_semana06_taissa/
-├── app.py
-├── requirements.txt
-├── WSGI_PYTHONANYWHERE.txt
-├── templates/
-│   ├── base.html
-│   ├── index.html
-│   └── login.html
-└── static/
-    └── favicon.ico
-```
+- Python
+- Flask
+- HTML
+- Bootstrap
+- PythonAnywhere
 
-## Caminho no PythonAnywhere
+## Estrutura do projeto
 
-Envie a pasta para:
+- `app.py`
+- `templates/`
+- `static/`
+- `requirements.txt`
 
-```text
-/home/taissapieri/flask_semana06_taissa
-```
+## Execução
 
-## Instalação
-
-No console Bash do PythonAnywhere:
+Para executar o projeto localmente:
 
 ```bash
-cd /home/taissapieri/flask_semana06_taissa
-
-python3 -m venv venv
-
-source venv/bin/activate
-
 pip install -r requirements.txt
-```
-
-## Configuração do Web App
-
-Crie o Web App usando "Manual configuration".
-
-No campo Virtualenv, use:
-
-```text
-/home/taissapieri/flask_semana06_taissa/venv
-```
-
-No arquivo WSGI, use:
-
-```python
-import sys
-
-path = '/home/taissapieri/flask_semana06_taissa'
-
-if path not in sys.path:
-    sys.path.append(path)
-
-from app import app as application
-```
-
-Depois clique em Reload.
-
-A URL deverá ser:
-
-```text
-https://taissapieri.pythonanywhere.com
-```
+python app.py
