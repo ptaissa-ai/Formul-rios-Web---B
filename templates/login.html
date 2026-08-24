@@ -2,93 +2,97 @@
 
 {% block page_content %}
 
-<div class="page-header">
-    <h1>Login</h1>
+<div class="row">
+
+    <div class="col-md-4 col-md-offset-4">
+
+        <div class="panel panel-default">
+
+            <div class="panel-body"
+                 style="padding: 30px;">
+
+                <h2>Login:</h2>
+
+                <form
+                    action=""
+                    method="post"
+                    role="form">
+
+                    <div class="form-group">
+
+                        <input
+                            class="form-control"
+                            id="usuario"
+                            name="usuario"
+                            type="text"
+                            placeholder="Usuário ou e-mail"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <input
+                            class="form-control"
+                            id="senha"
+                            name="senha"
+                            type="password"
+                            placeholder="Informe a sua senha"
+                            required>
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary">
+
+                        Enviar
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
 
 
-{% if mensagem %}
+<br>
 
-<div class="alert alert-success">
-    {{ mensagem }}
-</div>
+<p>
+    The local date and time is
 
-{% endif %}
+    <span
+        class="flask-moment"
+        data-timestamp="{{ timestamp }}"
+        data-function="format"
+        data-format="LLL"
+        data-refresh="0"
+        style="display: none">
 
+        {{ timestamp }}
 
-<form
-    action=""
-    method="post"
-    class="form"
-    role="form">
-
-
-    <div class="form-group required">
-
-        <label
-            class="control-label"
-            for="email">
-
-            Email
-
-        </label>
-
-        <input
-            class="form-control"
-            id="email"
-            name="email"
-            required
-            type="email"
-            value="">
-
-    </div>
+    </span>.
+</p>
 
 
-    <div class="form-group required">
+<p>
+    That was
 
-        <label
-            class="control-label"
-            for="password">
+    <span
+        class="flask-moment"
+        data-timestamp="{{ timestamp }}"
+        data-function="fromNow"
+        data-refresh="60000"
+        style="display: none">
 
-            Password
+        {{ timestamp }}
 
-        </label>
-
-        <input
-            class="form-control"
-            id="password"
-            name="password"
-            required
-            type="password"
-            value="">
-
-    </div>
-
-
-    <div class="checkbox">
-
-        <label>
-
-            <input
-                id="remember_me"
-                name="remember_me"
-                type="checkbox"
-                value="y">
-
-            Keep me logged in
-
-        </label>
-
-    </div>
-
-
-    <input
-        class="btn btn-default"
-        id="submit"
-        name="submit"
-        type="submit"
-        value="Log In">
-
-</form>
+    </span>.
+</p>
 
 {% endblock %}
